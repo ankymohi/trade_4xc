@@ -10,7 +10,7 @@
     <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link text-white active bg-gradient-primary" href="../pages/dashboard.html">
+          <a class="nav-link text-white active bg-gradient-primary" href="/dashboard">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">dashboard</i>
             </div>
@@ -25,16 +25,49 @@
             <span class="nav-link-text ms-1">Web Trader</span>
           </a>
         </li>
+     
+
         <li class="nav-item">
-          <a class="nav-link text-white " href="../pages/billing.html">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">receipt_long</i>
+            <a class="nav-link" data-bs-toggle="collapse" href="#investmentsCollapse" role="button" aria-expanded="false" aria-controls="investmentsCollapse">
+
+                <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                    <i class="material-icons opacity-10">receipt_long</i>
+                  </div>
+                  <span class="nav-link-text ms-1">Investments</span>
+            </a>
+            <div class="collapse" id="investmentsCollapse">
+              <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" href="/investments">My Investments</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Strategies</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Browse Strategies</a>
+                </li>
+              </ul>
             </div>
-            <span class="nav-link-text ms-1">Investments</span>
-          </a>
-        </li>
+          </li>
+      
         <li class="nav-item">
-          <a class="nav-link text-white " href="../pages/virtual-reality.html">
+            <a class="nav-link text-white " href="#">
+              <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="material-icons opacity-10">social_distance</i>
+              </div>
+              <span class="nav-link-text ms-1">Social Trading</span>
+            </a>
+          </li>
+        <li class="nav-item">
+            <a class="nav-link text-white " href="/wallet">
+              <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="material-icons opacity-10">account_balance_wallet</i>
+              </div>
+              <span class="nav-link-text ms-1">Wallet</span>
+            </a>
+          </li>
+        <li class="nav-item">
+          <a class="nav-link text-white " href="/orders">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">view_in_ar</i>
             </div>
@@ -42,7 +75,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white " href="../pages/rtl.html">
+          <a class="nav-link text-white " href="/reports">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">format_textdirection_r_to_l</i>
             </div>
@@ -88,7 +121,7 @@
     </div>
     <div class="sidenav-footer position-absolute w-100 bottom-0 ">
       <div class="mx-3">
-        <a class="btn bg-gradient-primary w-100" href="/" type="button">Logout</a>
+        <a class="btn bg-gradient-primary w-100" href="/logout" type="button">Logout</a>
       </div>
     </div>
   </aside>
