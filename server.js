@@ -9,6 +9,16 @@ const Wallet = require('./models/Wallet');
 const cors = require('cors')
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
+const nodemailer = require('nodemailer');
+
+let transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: 'shreyasguptateetrade@gmail.com',
+        pass: 'nbbd ersw zjcr uutd' // Your password
+    }
+});
+
 app.use(cors({ origin : '*'}))
 
 app.use(cookieParser());
@@ -182,10 +192,30 @@ app.get('/logout', (req, res) => {
 
 app.post('/register', async (req, res) => {
 
+  
+
     console.log(req.body);
+
+
     try {
       // Extract form data from request body
       const { accountType, title, firstname, lastname,username, email, dob, country, phone } = req.body;
+
+      let mailOptions = {
+        from: 'shreyasguptateetrade@gmail.com', // Sender address
+        to: email, // List of recipients
+        subject: 'Signup Successfull', // Subject line
+        text: 'Signup Successfull Password is 12345' // Plain text body
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            console.error('Error occurred:', error);
+        } else {
+            console.log('Email sent:', info.response);
+        }
+    });
+    
   
       // Create a new signup document
       const newSignup = new Signup({
