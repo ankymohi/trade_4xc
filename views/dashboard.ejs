@@ -490,15 +490,23 @@ Trader Dashbaord
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td style="text-align: center;">56232</td>
-                      <td style="text-align: center;">MT4 STD USD</td>
-                      <td style="text-align: center;">1:500</td>
-                      <td style="text-align: center;"> USD 50000</td>
-                      <td style="text-align: center;">50000</td>
-                      <td style="text-align: center;">0:0</td>
-                      <td style="text-align: center;">932965</td>
-                    </tr>
+
+                    <% wallet.forEach(function(item) { %>
+                      <tr>
+                          <!-- <td><%= item.column1 %></td>
+                          <td><%= item.column2 %></td> -->
+                          <td style="text-align: center;"><%= item.walletname %></td>
+                          <td style="text-align: center;"><%= item.walletname %></td>
+                          <td style="text-align: center;"><%= item.leverage %></td>
+                          <td style="text-align: center;"> <%= item.balance %></td>
+                          <td style="text-align: center;"><%= item.balance %></td>
+                          <td style="text-align: center;">0</td>
+                          <td style="text-align: center;"><%= item.walletname %></td>
+                          <!-- Repeat this for additional columns -->
+                      </tr>
+                  <% }); %>
+                  
+               
                     <!-- <tr>
                       <td>
                         <div class="d-flex px-2 py-1">

@@ -88,9 +88,12 @@ app.get('/dashboard', async(req, res) => {
 
    // console.log(req.session.user);
 
-    const wallet = await Wallet.find({ userId: req.session.user._id });
+    var wallet = await Wallet.find({ userId: req.session.user._id });
 
-    console.log(wallet);
+    console.log(wallet.length);
+
+
+   
 
     var bal = 0
     Wallet.aggregate([
@@ -112,8 +115,16 @@ app.get('/dashboard', async(req, res) => {
        if(result[0]){
         if (req.session.user) {
             if(req.session.user.kyc == true){
+
+
+    if(wallet.length == 0){
+        res.render('dashboard',{ user: req.session.user , balance : result[0].balance  });
+        
+    }else{
+        res.render('dashboard',{ user: req.session.user , balance : result[0].balance , wallet : wallet });
+    }
     
-                res.render('dashboard',{ user: req.session.user , balance : result[0].balance , wallet : wallet });
+               
     
             }else{
     
@@ -198,45 +209,65 @@ app.post('/register', async (req, res) => {
 
 
     try {
+
+     
       // Extract form data from request body
       const { accountType, title, firstname, lastname,username, email, dob, country, phone } = req.body;
 
-      let mailOptions = {
-        from: 'shreyasguptateetrade@gmail.com', // Sender address
-        to: email, // List of recipients
-        subject: 'Signup Successfull', // Subject line
-        text: 'Signup Successfull Password is 12345' // Plain text body
-    };
 
-    transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-            console.error('Error occurred:', error);
-        } else {
-            console.log('Email sent:', info.response);
-        }
-    });
+      const user = await Signup.findOne({ email: email });
+
+      console.log(user);
+
+      if (!user) {
+         
+        let mailOptions = {
+            from: 'shreyasguptateetrade@gmail.com', // Sender address
+            to: email, // List of recipients
+            subject: 'Signup Successfull', // Subject line
+            text: 'Signup Successfull Password is 12345' // Plain text body
+        };
     
-  
-      // Create a new signup document
-      const newSignup = new Signup({
-        accountType,
-        title,
-        firstname,
-        lastname,
-        username,
-        email,
-        dob,
-        country,
-        phone,
-        password:"12345",
-        kyc : false
-      });
-  
-      // Save the signup data to the database
-      await newSignup.save();
-  
-      // Send a response
-      res.status(200).json({ message: 'Signup successful!' });
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                console.error('Error occurred:', error);
+            } else {
+                console.log('Email sent:', info.response);
+            }
+        });
+        
+      
+          // Create a new signup document
+          const newSignup = new Signup({
+            accountType,
+            title,
+            firstname,
+            lastname,
+            username,
+            email,
+            dob,
+            country,
+            phone,
+            password:"12345",
+            kyc : false
+          });
+      
+          // Save the signup data to the database
+          await newSignup.save();
+      
+          // Send a response
+          res.status(200).json({ message: 'Signup successful!' });
+      } else {
+
+        //   req.session.user = user;
+          res.status(200).send('User Already Exists');
+
+
+      }
+
+
+
+   
     } catch (error) {
       console.error('Error processing signup:', error);
       res.status(500).json({ message: 'Internal server error' });
