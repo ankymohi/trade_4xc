@@ -92,6 +92,8 @@ app.get('/dashboard', async(req, res) => {
 
     console.log(wallet.length);
 
+    var wallet1 = []
+
 
    
 
@@ -118,7 +120,10 @@ app.get('/dashboard', async(req, res) => {
 
 
     if(wallet.length == 0){
-        res.render('dashboard',{ user: req.session.user , balance : result[0].balance  });
+      //  res.render('dashboard',{ user: req.session.user , balance : result[0].balance , wallet : wallet1  });
+
+        res.render('dashboard', { user: req.session.user , balance : result[0].balance , wallet: wallet.length > 0 ? wallet : null });
+
         
     }else{
         res.render('dashboard',{ user: req.session.user , balance : result[0].balance , wallet : wallet });
@@ -128,7 +133,7 @@ app.get('/dashboard', async(req, res) => {
     
             }else{
     
-                res.render('profile',{ user: req.session.user });
+                res.render('profile2',{ user: req.session.user });
             }
             
         } else {
@@ -142,7 +147,7 @@ app.get('/dashboard', async(req, res) => {
     
             }else{
     
-                res.render('profile',{ user: req.session.user });
+                res.render('profile2',{ user: req.session.user });
             }
             
         } else {
@@ -166,7 +171,7 @@ app.get('/wallet', (req, res) => {
     if (req.session.user) {
         if(req.session.user.kyc == true){
 
-            res.render('wallet',{ user: req.session.user });
+            res.render('profile1',{ user: req.session.user });
 
         }else{
 
@@ -183,8 +188,16 @@ app.get('/trade', (req, res) => {
 });
 
 
+app.get('/tradingsignals', (req, res) => {
+    res.render('signals',{user:req.session.user});
+});
+
 app.get('/investments', (req, res) => {
     res.render('investments',{user:req.session.user});
+});
+
+app.get('/owners', (req, res) => {
+    res.render('owners',{user:req.session.user});
 });
 
 app.get('/logout', (req, res) => {

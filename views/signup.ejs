@@ -430,7 +430,7 @@
                   </div>
                   <p class="mt-4 text-sm text-center">
                 Already have an account
-                    <a href="/login" class="text-primary text-gradient font-weight-bold">Login</a>
+                    <a href="/" class="text-primary text-gradient font-weight-bold">Login</a>
                   </p>
                 </form>
               </div>
@@ -527,7 +527,7 @@ $.ajax(settings).done(function (response) {
 
     toastr.success('Sign Up Succesfully  your password is 12345');
   }else{
-    toastr.success('User already Exists');
+    toastr.error('User already Exists');
   }
   
 
