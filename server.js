@@ -10,7 +10,7 @@ const cors = require('cors')
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const nodemailer = require('nodemailer');
-require('dotenv').config();
+
 
 let transporter = nodemailer.createTransport({
     service: 'gmail',
