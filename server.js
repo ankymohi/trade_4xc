@@ -36,7 +36,7 @@ app.use(bodyParser.json());
 
 
 // Connect to MongoDB
-mongoose.connect('mongodb+srv://ak8628041311:Ankymohi@cluster0.039rfki.mongodb.net/database?retryWrites=true&w=majority&appName=Cluster0', {
+mongoose.connect('mongodb://0.0.0.0:27017/trade', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 }).then(() => {
