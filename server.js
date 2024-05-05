@@ -90,7 +90,7 @@ app.get('/signup', (req, res) => {
 });
 app.get('/dashboard', async(req, res) => {
 
-    console.log(req.session);
+    console.log(req.session.user);
 
     var wallet = await Wallet.find({ userId: req.session.user._id });
 
