@@ -797,11 +797,29 @@ Trader Dashbaord
               <form id="moveMoneyForm">
                 <div class="form-group">
                   <label for="fromWallet">From Wallet:</label>
-                  <select><option>Demo Wallet</option><option>Demo Wallet2</option></select>
+                  <select id="fromw" class="form-select">
+                  <% if (typeof wallet !== 'undefined' && wallet.length > 0) { %>
+                    <% wallet.forEach(function(item) { %>
+                  <option><%= item.walletname %></option>
+                  <% }); %>
+                </select>
+                  
+                  <% } else { %>
+                    <select></select>
+                <% } %>
                 </div>
                 <div class="form-group">
                   <label for="toWallet">To Wallet:</label>
-                  <select><option>Demo Wallet</option><option>Demo Wallet2</option></select>
+                  <select id="tow" class="form-select">
+                  <% if (typeof wallet !== 'undefined' && wallet.length > 0) { %>
+                    <% wallet.forEach(function(item) { %>
+                 <option><%= item.walletname %></option>
+                  <% }); %>
+                </select>
+                  
+                  <% } else { %>
+                    <select></select>
+                <% } %>
                 </div>
                 <div class="form-group">
                   <label for="amount">Amount:</label>
