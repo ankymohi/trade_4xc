@@ -10,6 +10,9 @@ const cors = require('cors')
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const nodemailer = require('nodemailer');
+const crypto = require('crypto');
+const MongoStore = require('connect-mongo');
+
 
 
 let transporter = nodemailer.createTransport({
@@ -19,24 +22,28 @@ let transporter = nodemailer.createTransport({
         pass: 'nbbd ersw zjcr uutd' // Your password
     }
 });
+const secretKey = crypto.randomBytes(32).toString('hex');
 
 app.use(cors({ origin : '*'}))
 
 app.use(cookieParser());
 
 app.use(session({
-    secret: 'your_secret_here', // Change this to a secret key for session encryption
+    secret: secretKey, // Change this to a secret key for session encryption
     resave: false,
     saveUninitialized: true,
+    store: MongoStore.create({ mongoUrl: 'mongodb+srv://ak8628041311:Ankymohi@cluster0.039rfki.mongodb.net/database?retryWrites=true&w=majority&appName=Cluster0' }),
     cookie: { secure: false } // Change to true if using HTTPS
 }));
+
+app.set('trust proxy', 1);
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 
 // Connect to MongoDB
-mongoose.connect('mongodb://localhost:27017/trade', {
+mongoose.connect('mongodb+srv://ak8628041311:Ankymohi@cluster0.039rfki.mongodb.net/database?retryWrites=true&w=majority&appName=Cluster0', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 }).then(() => {
@@ -63,11 +70,14 @@ app.get('/', (req, res) => {
 app.post('/login', async (req, res) => {
     const { email, password } = req.body;
 
+    console.log(email);
+
     try {
         // Find user by email
         const user = await Signup.findOne({ email: email });
 
         console.log(user);
+        req.session.user = user;
 
         if (!user || user.password !== password) {
             res.status(401).json({ code: '401' });
@@ -87,7 +97,7 @@ app.get('/signup', (req, res) => {
 });
 app.get('/dashboard', async(req, res) => {
 
-   // console.log(req.session.user);
+    console.log(req.session);
 
     var wallet = await Wallet.find({ userId: req.session.user._id });
 

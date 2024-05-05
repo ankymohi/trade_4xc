@@ -503,7 +503,7 @@
 
 
         var settings = {
-  "url": "http://localhost:8080/register",
+  "url": "https://www.4xctrader.live/register",
   "method": "POST",
   "timeout": 0,
   "headers": {
@@ -524,16 +524,16 @@
 $.ajax(settings).done(function (response) {
   console.log(response);
   if(response.message == "User Already Exists"){
-
-    toastr.success('Sign Up Succesfully  your password is 12345');
-  }else{
     toastr.error('User already Exists');
+    ;
+  }else{
+    toastr.success('Sign Up Succesfully  your password is 12345')
   }
   
 
-  setTimeout(function() {
-        window.location.href = "/";
-    }, 3000);
+  // setTimeout(function() {
+  //       window.location.href = "/";
+  //   }, 3000);
 });
 
 
