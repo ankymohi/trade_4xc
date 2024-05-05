@@ -29,7 +29,7 @@ app.use(session({
     secret: secretKey, // Change this to a secret key for session encryption
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: true } // Change to true if using HTTPS
+    cookie: { secure: false } // Change to true if using HTTPS
 }));
 
 app.set('trust proxy', 1);
