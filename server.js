@@ -10,6 +10,7 @@ const cors = require('cors')
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const nodemailer = require('nodemailer');
+const crypto = require('crypto');
 
 let transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -18,16 +19,17 @@ let transporter = nodemailer.createTransport({
         pass: 'nbbd ersw zjcr uutd' // Your password
     }
 });
+const secretKey = crypto.randomBytes(32).toString('hex');
 
 app.use(cors({ origin : '*'}))
 
 app.use(cookieParser());
 
 app.use(session({
-    secret: 'your_secret_here', // Change this to a secret key for session encryption
+    secret: secretKey, // Change this to a secret key for session encryption
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: false } // Change to true if using HTTPS
+    cookie: { secure: true } // Change to true if using HTTPS
 }));
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -35,7 +37,7 @@ app.use(bodyParser.json());
 
 
 // Connect to MongoDB
-mongoose.connect('mongodb://localhost:27017/trade', {
+mongoose.connect('mongodb+srv://ak8628041311:Ankymohi@cluster0.039rfki.mongodb.net/database?retryWrites=true&w=majority&appName=Cluster0', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 }).then(() => {
@@ -62,6 +64,8 @@ app.get('/', (req, res) => {
 app.post('/login', async (req, res) => {
     const { email, password } = req.body;
 
+    console.log(email);
+
     try {
         // Find user by email
         const user = await Signup.findOne({ email: email });
@@ -86,7 +90,7 @@ app.get('/signup', (req, res) => {
 });
 app.get('/dashboard', async(req, res) => {
 
-   // console.log(req.session.user);
+    console.log(req.session);
 
     var wallet = await Wallet.find({ userId: req.session.user._id });
 
