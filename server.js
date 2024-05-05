@@ -11,6 +11,8 @@ const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const nodemailer = require('nodemailer');
 const crypto = require('crypto');
+const MongoStore = require('connect-mongo');
+
 
 let transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -29,6 +31,7 @@ app.use(session({
     secret: secretKey, // Change this to a secret key for session encryption
     resave: false,
     saveUninitialized: true,
+    store: MongoStore.create({ mongoUrl: 'mongodb+srv://ak8628041311:Ankymohi@cluster0.039rfki.mongodb.net/database?retryWrites=true&w=majority&appName=Cluster0' }),
     cookie: { secure: false } // Change to true if using HTTPS
 }));
 
