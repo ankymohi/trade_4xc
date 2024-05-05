@@ -32,6 +32,8 @@ app.use(session({
     cookie: { secure: true } // Change to true if using HTTPS
 }));
 
+app.set('trust proxy', 1);
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
