@@ -69,14 +69,17 @@ app.get('/', (req, res) => {
 app.post('/login', async (req, res) => {
     const { email, password } = req.body;
 
+    console.log(email);
+
     try {
         // Find user by email
         const user = await Signup.findOne({ email: email });
 
         console.log(user);
+        req.session.user = user;
 
         if (!user || user.password !== password) {
-            res.status(200).send({ code: '401' });
+            res.status(401).json({ code: '401' });
         } else {
 
             req.session.user = user;
