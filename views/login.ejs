@@ -210,7 +210,7 @@
 
     function login(){
       var settings = {
-  "url": "https://www.4xctrader.live/login",
+  "url": "http://localhost:8080/login",
   "method": "POST",
   "timeout": 0,
   "headers": {
@@ -222,17 +222,30 @@
   }),
 };
 
+
+var email = $("#email").val();
+ var pass = $("#password").val();
+if(!email && !pass){
+
+
+  alert("Email and password can't be blank")
+
+  return;
+}
+
 $.ajax(settings).done(function (response) {
   console.log(response.status);
   if(response.code == "401"){
     alert(response.code)
-    toastr.success('Please check username password');
+    toastr.error('Please check username password');
+    return;
   }else{
 
     toastr.success('login in....');
+    window.location.href = "/dashboard";
   }
 
-  window.location.href = "/dashboard";
+  
 
 });
     }
