@@ -470,7 +470,7 @@ Trader Dashbaord
               <div class="row">
                 <div class="col-lg-6 col-7">
                   <h6>Wallets</h6> <br>
-                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#moveMoneyModal">
+                  <button type="button" class="btn btn-primary" onClick="movemodal()">
                     Move Money
                   </button>
                   <!-- <p class="text-sm mb-0">
@@ -966,6 +966,10 @@ Trader Dashbaord
   <script src="../assets/js/material-dashboard.min.js?v=3.1.0"></script>
 
   <script>
+    function movemodal(){
+
+      $('#moveMoneyModal').modal('show');
+    }
     function movemoney(){
       alert("Money has been moved")
     }
