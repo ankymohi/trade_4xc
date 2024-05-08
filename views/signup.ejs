@@ -540,7 +540,7 @@ $.ajax(settings).done(function (response) {
     toastr.error('User already Exists');
     ;
   }else{
-    toastr.success('Sign Up Succesfully  your password is 12345')
+    toastr.success(response.message)
   }
   
 
