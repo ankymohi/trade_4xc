@@ -209,6 +209,19 @@
     }
 
     function login(){
+
+      var email = $("#email").val();
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if(emailRegex.test(email) == false){
+
+        alert("You are not using a proper email");
+
+        return;
+      }
+  
+
       var settings = {
   "url": "https://4xctrader.live/login",
   "method": "POST",
