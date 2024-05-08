@@ -236,7 +236,7 @@ if(!email && !pass){
 $.ajax(settings).done(function (response) {
   console.log(response.status);
   if(response.code == "401"){
-    alert(response.code)
+    //alert(response.code)
     toastr.error('Please check username password');
     return;
   }else{
