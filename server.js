@@ -234,6 +234,8 @@ app.post('/register', async (req, res) => {
       // Extract form data from request body
       const { accountType, title, firstname, lastname,username, email, dob, country, phone } = req.body;
 
+      var pass = generateRandomPassword(12);
+
 
       const user = await Signup.findOne({ email: email });
 
@@ -245,7 +247,7 @@ app.post('/register', async (req, res) => {
             from: 'shreyasguptateetrade@gmail.com', // Sender address
             to: email, // List of recipients
             subject: 'Signup Successfull', // Subject line
-            text: 'Signup Successfull Password is 12345' // Plain text body
+            text: 'Signup Successfull Password is '+pass // Plain text body
         };
     
         transporter.sendMail(mailOptions, (error, info) => {
@@ -268,7 +270,7 @@ app.post('/register', async (req, res) => {
             dob,
             country,
             phone,
-            password:"12345",
+            password:pass,
             kyc : false
           });
       
@@ -276,7 +278,7 @@ app.post('/register', async (req, res) => {
           await newSignup.save();
       
           // Send a response
-          res.status(200).json({ message: 'Signup successful!' });
+          res.status(200).json({ message: 'Signup successful! and password is '+pass });
       } else {
 
         //   req.session.user = user;
@@ -293,6 +295,16 @@ app.post('/register', async (req, res) => {
       res.status(500).json({ message: 'Internal server error' });
     }
   });
+
+  function generateRandomPassword(length) {
+    const charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-_=+';
+    let password = '';
+    for (let i = 0; i < length; i++) {
+        const randomIndex = Math.floor(Math.random() * charset.length);
+        password += charset[randomIndex];
+    }
+    return password;
+}
 
 
   app.post('/addwallet', async (req, res) => {

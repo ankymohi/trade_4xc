@@ -156,7 +156,7 @@
                     </select>
                   </div>
                   <div class="input-group input-group-outline mb-3">
-                    <label class="form-label">First Name</label>
+                    <label class="form-label">First Name</label><br>
                     <input type="text" class="form-control" id="firstname" required>
                   </div>
                   <div class="input-group input-group-outline mb-3">
@@ -498,6 +498,19 @@
         var dob = $("#date").val();
         var country = $("#country").val();
         var phone = $("#phone").val();
+
+
+ 
+
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const emailRegex1 = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+
+if(emailRegex.test(email) == false || emailRegex1.test(email) == false){
+
+  alert("You are not using a proper email");
+
+  return;
+}
 
         if(atype && sat && uname && fname && lname && email && dob && country && phone){
 
