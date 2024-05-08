@@ -213,13 +213,15 @@
       var email = $("#email").val();
 
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const emailRegex1 = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
 
-      if(emailRegex.test(email) == false){
+      if(emailRegex.test(email) == false || emailRegex1.test(email) == false){
 
         alert("You are not using a proper email");
 
         return;
       }
+
   
 
       var settings = {
