@@ -61,6 +61,8 @@ app.set('views', path.join(__dirname, 'views'));
 // Serve static files from the 'public' directory
 app.use(express.static('public'));
 
+
+
 // Define a route to render the index.ejs file
 app.get('/', (req, res) => {
     res.render('login');
@@ -96,6 +98,12 @@ app.get('/signup', (req, res) => {
 app.get('/forget', (req, res) => {
     res.render('forget');
 });
+
+app.use((req, res, next) => {
+    const url = req.url;
+    res.locals.includeHeader = url.includes('goog');
+    next();
+  });
 app.get('/dashboard', async(req, res) => {
 
     console.log(req.session);
