@@ -99,11 +99,7 @@ app.get('/forget', (req, res) => {
     res.render('forget');
 });
 
-app.use((req, res, next) => {
-    const url = req.url;
-    res.locals.includeHeader = url.includes('goog');
-    next();
-  });
+
 app.get('/dashboard', async(req, res) => {
 
     console.log(req.session);
