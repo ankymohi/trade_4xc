@@ -58,9 +58,9 @@ Trader Dashbaord
 
 
   <% if (includeHeader) { %>
-    <% include header.ejs %>
+    <%- include('header'); -%> 
   <% } else { %>
-    <% include header1.ejs %>
+    <%- include('header1'); -%> 
   <% } %>
 
   <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
