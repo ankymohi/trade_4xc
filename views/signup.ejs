@@ -542,9 +542,9 @@ if(emailRegex.test(email) == false || emailRegex1.test(email) == false){
 };
 $.ajax(settings).done(function (response) {
   console.log(response);
-  if(response.message == "User Already Exists"){
+  if(response == "User Already Exists"){
     toastr.error('User already Exists');
-    ;
+
   }else{
     toastr.success(response.message)
   }
