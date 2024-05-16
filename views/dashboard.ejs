@@ -805,7 +805,7 @@ Trader Dashbaord
                   <select id="fromw" class="form-select">
                   <% if (typeof wallet !== 'undefined' && wallet.length > 0) { %>
                     <% wallet.forEach(function(item) { %>
-                  <option><%= item.walletname %></option>
+                  <option ><%= item.walletname %></option>
                   <% }); %>
                 </select>
                   
@@ -901,6 +901,13 @@ Trader Dashbaord
       $('#moveMoneyModal').modal('show');
     }
     function movemoney(){
+
+      var from = $("#fromw").val();
+      var two = $("#tow").val();
+     var amount = $("#amount").val();
+     var messgae = $("$message").val();
+
+     alert(from);alert(two);alert(amount);alert(message);
       alert("Money has been moved")
     }
   </script>
