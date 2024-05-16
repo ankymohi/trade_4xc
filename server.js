@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const Signup = require('./models/User');
 const Wallet = require('./models/Wallet');
+const Transaction = require('./models/Transaction');
 const cors = require('cors')
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
@@ -343,6 +344,44 @@ app.post('/register', async (req, res) => {
     }
   });
 
+
+
+
+  app.post('/addtransaction', async (req, res) => {
+
+    console.log(req.body);
+    try {
+      // Extract form data from request body
+      const { from , two , amount ,message   } = req.body;
+
+
+      var date = new Date();
+
+      var identifier = (Math.random() + 1).toString(36).substring(7);
+  //let r = (Math.random() + 1).toString(36).substring(7);
+      // Create a new signup document
+      const newSignup = new Transaction({
+        identifier,
+        from,
+        two,
+        amount,
+        date,
+        processed:date,
+        paymentmethod : "Wallet",
+        message,
+        userId:req.session.user._id
+      });
+  
+      // Save the signup data to the database
+      await newSignup.save();
+  
+      // Send a response
+      res.status(200).json({ message: 'Transaction successful!' });
+    } catch (error) {
+      console.error('Error processing signup:', error);
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  });
 
   app.get('/kyc', async (req, res) => {
 
