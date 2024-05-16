@@ -229,6 +229,26 @@ Trader Dashbaord
                     </tr>
                   </thead>
                   <tbody>
+
+                    <% if (typeof transaction !== 'undefined' && transaction.length > 0) { %>
+                    <% transaction.forEach(function(item) { %>
+                      <tr>
+                          <!-- <td><%= item.column1 %></td>
+                          <td><%= item.column2 %></td> -->
+                          <td style="text-align: center;"><%= item.identifier %></td>
+                          <td style="text-align: center;"><%= item.amount %></td>
+                          <td style="text-align: center;"><%= item.date %></td>
+                          <td style="text-align: center;"> <%= item.date %></td>
+                          <td style="text-align: center;">Wallet</td>
+                    
+                          <!-- Repeat this for additional columns -->
+                      </tr>
+                  <% }); %>
+                  
+                  <% } else { %>
+                    <p>No items in the Transaction</p>
+                <% } %>
+               
                     <!-- <tr>
                       <td>
                         <div class="d-flex px-2 py-1">

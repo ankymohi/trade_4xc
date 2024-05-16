@@ -107,6 +107,9 @@ app.get('/dashboard', async(req, res) => {
 
     var wallet = await Wallet.find({ userId: req.session.user._id });
 
+
+    var transaction = await Transaction.find({ userid: req.session.user._id });
+
     console.log(wallet.length);
 
     var wallet1 = []
@@ -136,14 +139,14 @@ app.get('/dashboard', async(req, res) => {
             if(req.session.user.kyc == true){
 
 
-    if(wallet.length == 0){
+    if(wallet.length == 0 || transaction.length == 0){
       //  res.render('dashboard',{ user: req.session.user , balance : result[0].balance , wallet : wallet1  });
 
-        res.render('dashboard', { user: req.session.user , balance : result[0].balance , wallet: wallet.length > 0 ? wallet : null });
+        res.render('dashboard', { user: req.session.user , balance : result[0].balance , wallet: wallet.length > 0 ? wallet : null , transaction: transaction.length > 0 ? transaction : null });
 
         
     }else{
-        res.render('dashboard',{ user: req.session.user , balance : result[0].balance , wallet : wallet });
+        res.render('dashboard',{ user: req.session.user , balance : result[0].balance , wallet : wallet , transaction:transaction });
     }
     
                
@@ -203,6 +206,7 @@ app.get('/wallet', (req, res) => {
 app.get('/trade', (req, res) => {
     res.render('webtrader',{user:req.session.user});
 });
+
 
 
 app.get('/tradingsignals', (req, res) => {
