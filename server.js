@@ -110,7 +110,7 @@ app.get('/dashboard', async(req, res) => {
 
     var transaction = await Transaction.find({ userid: req.session.user._id });
 
-    console.log(wallet.length);
+    console.log(transaction.length);
 
     var wallet1 = []
 
