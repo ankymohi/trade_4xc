@@ -4,16 +4,16 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const walletSchema = new Schema({
-  identifier: String,
-  amount: Number,
-  date : String,
-  processed:String,
-  paymentmethod : String,
+  walletname: String,
+  balance: Number,
+  leverage : String,
+  account:String,
+  userId : String,
 });
 
 
 
 
-const Transactions = mongoose.model('Transactions', walletSchema);
+const Wallet = mongoose.model('Wallet', walletSchema);
 
-module.exports = Transactions;
+module.exports = Wallet;
