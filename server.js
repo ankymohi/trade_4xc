@@ -373,7 +373,7 @@ app.post('/register', async (req, res) => {
         processed:date,
         paymentmethod : "Wallet",
         message,
-        userId:req.session.user._id
+        userid:req.session.user._id
       });
   
       // Save the signup data to the database
