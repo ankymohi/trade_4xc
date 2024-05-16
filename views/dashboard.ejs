@@ -909,7 +909,28 @@ Trader Dashbaord
 
     //  alert(from);alert(two);alert(amount);alert(message);
 
-    
+
+    var settings = {
+  "url": "https://4xctrader.live/addtransaction",
+  "method": "POST",
+  "timeout": 0,
+  "headers": {
+    "Content-Type": "application/json",
+    "Cookie": "connect.sid=s%3ADjJ6-VNztBH7maEBsq07V9VHvOL4Smgu.qYMFRdS4c5b0S6Kd9knBfXYy7ZPIBq5dGHSvazlmh1Y"
+  },
+  "data": JSON.stringify({
+    "from": from,
+    "two": two,
+    "amount": amount,
+    "message":message
+  }),
+};
+
+$.ajax(settings).done(function (response) {
+  console.log(response);
+});
+
+
       alert("Money has been moved")
     }
   </script>
