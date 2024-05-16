@@ -140,12 +140,15 @@ app.get('/dashboard', async(req, res) => {
 
 
     if(wallet.length == 0 || transaction.length == 0){
+
+        console.log("HEllo");
       //  res.render('dashboard',{ user: req.session.user , balance : result[0].balance , wallet : wallet1  });
 
         res.render('dashboard', { user: req.session.user , balance : result[0].balance , wallet: wallet.length > 0 ? wallet : null , transaction: transaction.length > 0 ? transaction : [] });
 
         
     }else{
+        console.log("HEllo1");
         res.render('dashboard',{ user: req.session.user , balance : result[0].balance , wallet : wallet , transaction:transaction });
     }
     
