@@ -264,7 +264,7 @@ app.post('/register', async (req, res) => {
             from: 'shreyasguptateetrade@gmail.com', // Sender address
             to: email, // List of recipients
             subject: 'Signup Successfull', // Subject line
-            text: 'Signup Successfull Password is '+pass // Plain text body
+            text: 'Signup Successfull password sended on your email Password is '+pass // Plain text body
         };
     
         transporter.sendMail(mailOptions, (error, info) => {
