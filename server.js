@@ -334,7 +334,7 @@ app.post('/register', async (req, res) => {
       // Create a new signup document
       const newSignup = new Wallet({
         walletname,
-        balance:10000,
+        balance:00,
         leverage : "1:0",
         account : 'MT4-demo',
         userId:req.session.user._id
